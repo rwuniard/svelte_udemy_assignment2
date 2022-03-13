@@ -31,11 +31,11 @@ Password
 <input bind:value={myPwd} on:input={checkPwd} type="password" />
 
 <div>
-    <p>{warning}</p>
-</div>
-
-<div>
-    <p>{myPwd}</p>
+    {#if warning === 'OK'}
+        <p>{myPwd}</p>
+    {:else}
+        <p>{warning}</p>
+    {/if}
 </div>
 
 <style>
