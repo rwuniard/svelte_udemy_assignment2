@@ -1,6 +1,8 @@
 <script>
     let myPwd = '';
     let warning = '';
+    let passwords = [];
+
     function checkPwd() {
         if (myPwd.length < 5) {
             warning = 'Too Short';
@@ -11,6 +13,21 @@
         } else {
             warning = 'OK';
         }
+    }
+
+    function addPassword() {
+        passwords = [...passwords, { pwdid: Math.random(), myPwd }];
+    }
+
+    function deletePwd() {
+        passwords.slice(1);
+    }
+
+    function isButtonEnabled() {
+        if (warning === 'OK') {
+            return enabled;
+        }
+        return disabled;
     }
 </script>
 
@@ -37,6 +54,14 @@ Password
         <p>{warning}</p>
     {/if}
 </div>
+<button on:click={addPassword}>Add Password</button>
+
+{#each passwords as password, index (password.pwdid)}
+    <div>
+        <p># {index + 1}</p>
+        <ul>{password.myPwd}</ul>
+    </div>
+{/each}
 
 <style>
 </style>
