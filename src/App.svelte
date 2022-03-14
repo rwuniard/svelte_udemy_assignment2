@@ -1,4 +1,5 @@
 <script>
+    import Password from './Password.svelte';
     let myPwd = '';
     let warning = '';
     let passwords = [];
@@ -59,7 +60,7 @@ Password
 {#each passwords as password, index (password.pwdid)}
     <div>
         <p># {index + 1}</p>
-        <ul>{password.myPwd}</ul>
+        <Password pwd={password.myPwd} />
     </div>
 {/each}
 
