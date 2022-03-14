@@ -20,8 +20,12 @@
         passwords = [...passwords, { pwdid: Math.random(), myPwd }];
     }
 
-    function deletePwd() {
-        passwords.slice(1);
+    function removePwd(index) {
+        // this is not efficient, since it will go through the array
+        // and compare the index, if it is not returning true, it won't be added to the new array.
+        passwords = passwords.filter((pwd, idx) => {
+            return idx != index;
+        });
     }
 
     function isButtonEnabled() {
@@ -60,9 +64,13 @@ Password
 {#each passwords as password, index (password.pwdid)}
     <div>
         <p># {index + 1}</p>
-        <Password pwd={password.myPwd} />
+        <!--
+			This is if we want to use component.
+			 <Password pwd={password.myPwd} />
+		-->
+        <ul>
+            <!-- To pass the index to the function, we use bind. I need to look at the format of this a bit deeper.-->
+            <li on:click={removePwd.bind(this, index)}>{password.myPwd}</li>
+        </ul>
     </div>
 {/each}
-
-<style>
-</style>
