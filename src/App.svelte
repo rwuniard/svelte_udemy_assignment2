@@ -61,16 +61,15 @@ Password
 </div>
 <button on:click={addPassword}>Add Password</button>
 
-{#each passwords as password, index (password.pwdid)}
-    <div>
+<ul>
+    {#each passwords as password, index (password.pwdid)}
         <p># {index + 1}</p>
         <!--
 			This is if we want to use component.
-			 <Password pwd={password.myPwd} />
+				<Password pwd={password.myPwd} />
 		-->
-        <ul>
-            <!-- To pass the index to the function, we use bind. I need to look at the format of this a bit deeper.-->
-            <li on:click={removePwd.bind(this, index)}>{password.myPwd}</li>
-        </ul>
-    </div>
-{/each}
+
+        <!-- To pass the index to the function, we use bind. I need to look at the format of this a bit deeper.-->
+        <li on:click={removePwd.bind(this, index)}>{password.myPwd}</li>
+    {/each}
+</ul>

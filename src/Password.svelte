@@ -2,6 +2,4 @@
     export let pwd;
 </script>
 
-<div>
-    <ul>{pwd}</ul>
-</div>
+<li>{pwd}</li>
